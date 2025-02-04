@@ -1,6 +1,5 @@
 
 
-}
 
 def RegistrereBog(bog):
     RegistrerSvar = input("Vil du registrere en bog?")
