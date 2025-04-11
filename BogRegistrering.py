@@ -8,7 +8,7 @@ class Bog:
         self.isbn = isbn
         self.bedømmelse = bedømmelse
 
-    def markerLæst
+    def markerLææst
 
 
 class Bibliotek:
