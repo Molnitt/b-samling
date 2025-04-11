@@ -8,7 +8,10 @@ class Bog:
         self.isbn = isbn
         self.bedømmelse = bedømmelse
 
-class bibliotek:
+    def markerLæst
+
+
+class Bibliotek:
     def __init__(self):
         self.bøger = []
 
@@ -16,18 +19,26 @@ class bibliotek:
         self.bøger.append(bog)
 
 
+bib = Bibliotek()
 
-def RegistrereBog(bogRegristrering):
+
+def registrereBog():
     RegistrerSvar = input("Vil du registrere en bog? ").upper()
     if RegistrerSvar == "JA":
         title = input("Hvilken bog vil du registrere? ")
         forfatter = input("Hvem er forfatteren af bogen? ")
         genre = input("Hvilken genre har bogen? ")
         isbn = input("Hvad er bogens ISBN? ")
+        ny_bog = Bog(title, forfatter, genre, isbn)
+        bib.tilføj(ny_bog)
+
+registrereBog()
+print(bib.bøger)
 
 
-        Bog(title, forfatter, genre, isbn)
+#def bedømmelseSystem():
+   # BedømmelseSvar = input("Vi du bedømme en tidligere regristreret bog?").upper()
+   # if BedømmelseSvar == "JA":
+       # bogvalg = input("Hvilken bog?")
 
-        print("Bog er tilføjet til bog samlingen.")
-    else:
-        print("Intet registreret.")
+
