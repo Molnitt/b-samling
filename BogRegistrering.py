@@ -7,8 +7,13 @@ class Bog:
         self.genre = genre
         self.isbn = isbn
         self.bedømmelse = bedømmelse
+        self.læst = False
 
-    def markerLææst
+    def markerLæst(self):
+        self.læst = True
+
+
+
 
 
 class Bibliotek:
@@ -31,6 +36,9 @@ def registrereBog():
         isbn = input("Hvad er bogens ISBN? ")
         ny_bog = Bog(title, forfatter, genre, isbn)
         bib.tilføj(ny_bog)
+        print("Denne bog er nu registreret")
+
+
 
 registrereBog()
 print(bib.bøger)
