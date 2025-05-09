@@ -1,16 +1,15 @@
 Bogsamling = []
 
 class Bog:
-    def __init__(self, title, forfatter, genre, isbn, bedømmelse=None):
+    def __init__(self, title, forfatter, genre, isbn, bedømmelse=None, læststatus=None):
         self.title = title
         self.forfatter = forfatter
         self.genre = genre
         self.isbn = isbn
         self.bedømmelse = bedømmelse
-        self.læst = False
+        self.læststatus = læststatus
 
-    def markerLæst(self):
-        self.læst = True
+
 
 
 
@@ -38,10 +37,23 @@ def registrereBog():
         bib.tilføj(ny_bog)
         print("Denne bog er nu registreret")
 
-
-
 registrereBog()
 print(bib.bøger)
+
+
+
+#def bogstatus():
+   # statussvar = input("Hvilken bog vil du ændre status på?").upper()
+   # if statussvar == bib.bøger
+        #status = input("Er bogen læst eller ulæst")
+        #statussvar.bøger = Bog(status)
+        #bib.tilføj(statussvar.bøger)
+        #print("Bogens status er nu endret")
+
+
+#bogstatus()
+#print(bib.bøger)
+
 
 
 #def bedømmelseSystem():
