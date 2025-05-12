@@ -11,10 +11,6 @@ class Bog:
 
 
 
-
-
-
-
 class Bibliotek:
     def __init__(self):
         self.bøger = []
@@ -40,19 +36,42 @@ def registrereBog():
 registrereBog()
 print(bib.bøger)
 
+def bogBedømmelse():
+    titel = input("Hvilken bog vil du bedømme?").upper()
+
+    fundet = False
+    for bog in bib.bøger:
+        if bog.title.lower() == titel.lower():
+            bedømmelse = input("Hvordan vil du bedømme bogen fra 1-10?").upper()
+            bog.bedømmelse = bedømmelse
+            print("Bogens bedømmelse er nu ændret")
+            fundet = True
+            break
+    if not fundet:
+        print("Denne bog er ikke registreret og derfor ikke bedømmes.")
+
+bogBedømmelse()
+print(bib.bøger)
 
 
-#def bogstatus():
-   # statussvar = input("Hvilken bog vil du ændre status på?").upper()
-   # if statussvar == bib.bøger
-        #status = input("Er bogen læst eller ulæst")
-        #statussvar.bøger = Bog(status)
-        #bib.tilføj(statussvar.bøger)
-        #print("Bogens status er nu endret")
+
+def bogStatus():
+    titel = input("Hvilken bog vil du ændre status på? ").upper() #Gør det muligt at vælge hvilken bog der skal ændre status på.
+
+    fundet = False #Hvis bogen findes i biblioteket vil man få valget mellem at bogen er læst eller ulæst.
+    for bog in bib.bøger:
+        if bog.title.lower() == titel.lower():
+            status = input("Er bogen læst eller ulæst").upper()
+            bog.læststatus = status
+            print("Bogens status er nu ændret")
+            fundet = True
+            break
+    if not fundet: #Hvis bogen ikke kan findes i biblioteket kan der ikke ændres status.
+        print("Denne bog er ikke registreret og kan derfor ikke markeres med status.")
 
 
-#bogstatus()
-#print(bib.bøger)
+bogStatus()
+print(bib.bøger)
 
 
 
