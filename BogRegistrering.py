@@ -1,6 +1,6 @@
 Bogsamling = []
 
-class Bog:
+class Bog: #Klasse til bøgerne.
     def __init__(self, title, forfatter, genre, isbn, bedømmelse=None, læststatus=None):
         self.title = title
         self.forfatter = forfatter
@@ -10,7 +10,6 @@ class Bog:
         self.læststatus = læststatus
 
 
-
 class Bibliotek:
     def __init__(self):
         self.bøger = []
@@ -18,13 +17,12 @@ class Bibliotek:
     def tilføj(self, bog):
         self.bøger.append(bog)
 
-
 bib = Bibliotek()
 
 
-def registrereBog():
-    RegistrerSvar = input("Vil du registrere en bog? ").upper()
-    if RegistrerSvar == "JA":
+def registrereBog(): #Funktion der gør at man kan ændre statusen på bøger.
+    RegistrerSvar = input("Vil du registrere en bog? ").upper() #Man får valget om man vil registrer en bog eller ej.
+    if RegistrerSvar == "JA": #Hvis "Ja" vil
         title = input("Hvilken bog vil du registrere? ")
         forfatter = input("Hvem er forfatteren af bogen? ")
         genre = input("Hvilken genre har bogen? ")
@@ -36,48 +34,48 @@ def registrereBog():
 registrereBog()
 print(bib.bøger)
 
-def bogBedømmelse():
-    titel = input("Hvilken bog vil du bedømme?").upper()
 
-    fundet = False
-    for bog in bib.bøger:
-        if bog.title.lower() == titel.lower():
-            bedømmelse = input("Hvordan vil du bedømme bogen fra 1-10?").upper()
-            bog.bedømmelse = bedømmelse
-            print("Bogens bedømmelse er nu ændret")
-            fundet = True
+def bogBedømmelse(): #Funktion der gør det muligt at ædre bedømmelsen på bøger.
+    RegistrerSvarBedømmelse = input("Vil du bedømme en bog?").upper()
+    if RegistrerSvarBedømmelse == "JA":
+        titel = input("Hvilken bog vil du bedømme?").upper()
 
-    if not fundet:
-        print("Denne bog er ikke registreret og derfor ikke bedømmes.")
+        fundet = False
+        for bog in bib.bøger: #Hvis den intastet bog findes i biblioteket over bøger vil man kunne bedømme bogen.
+            if bog.title.lower() == titel.lower():
+                bedømmelse = input("Hvordan vil du bedømme bogen fra 1-10?").upper()
+                    if bedømmelse ==
+                bog.bedømmelse = bedømmelse #Bogens bedømmelse ændres.
+                print("Bogens bedømmelse er nu ændret")
+                fundet = True
+
+        if not fundet: #Hvis bogen ikke findes i bibliotekket vil den printe teksten nedenfor.
+            print("Denne bog er ikke registreret og derfor ikke bedømmes.")
 
 bogBedømmelse()
 print(bib.bøger)
 
 
+def bogStatus(): #Funktion til at ændre status på bogen.
+    RegistrerSvarStatus = input("Vil du ændre statusen af en bog?").upper()
+    if RegistrerSvarStatus == "JA":
+        titel = input("Hvilken bog vil du ændre status på? ").upper() #Gør det muligt at vælge hvilken bog der skal ændre status på.
 
-def bogStatus():
-    titel = input("Hvilken bog vil du ændre status på? ").upper() #Gør det muligt at vælge hvilken bog der skal ændre status på.
+        fundet = False #Hvis bogen findes i biblioteket vil man få valget mellem at bogen er læst eller ulæst.
+        for bog in bib.bøger:
+            if bog.title.lower() == titel.lower():
+                status = input("Er bogen læst eller ulæst").upper()
+                bog.læststatus = status #Bogens status ændres
+                print("Bogens status er nu ændret")
+                fundet = True
 
-    fundet = False #Hvis bogen findes i biblioteket vil man få valget mellem at bogen er læst eller ulæst.
-    for bog in bib.bøger:
-        if bog.title.lower() == titel.lower():
-            status = input("Er bogen læst eller ulæst").upper()
-            bog.læststatus = status
-            print("Bogens status er nu ændret")
-            fundet = True
-
-    if not fundet: #Hvis bogen ikke kan findes i biblioteket kan der ikke ændres status.
-        print("Denne bog er ikke registreret og kan derfor ikke markeres med status.")
-
+        if not fundet: #Hvis bogen ikke kan findes i biblioteket kan der ikke ændres status.
+            print("Denne bog er ikke registreret og kan derfor ikke markeres med status.")
 
 bogStatus()
 print(bib.bøger)
 
 
 
-#def bedømmelseSystem():
-   # BedømmelseSvar = input("Vi du bedømme en tidligere regristreret bog?").upper()
-   # if BedømmelseSvar == "JA":
-       # bogvalg = input("Hvilken bog?")
 
 
