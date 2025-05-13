@@ -46,7 +46,7 @@ def bogBedømmelse():
             bog.bedømmelse = bedømmelse
             print("Bogens bedømmelse er nu ændret")
             fundet = True
-            break
+
     if not fundet:
         print("Denne bog er ikke registreret og derfor ikke bedømmes.")
 
@@ -65,7 +65,7 @@ def bogStatus():
             bog.læststatus = status
             print("Bogens status er nu ændret")
             fundet = True
-            break
+
     if not fundet: #Hvis bogen ikke kan findes i biblioteket kan der ikke ændres status.
         print("Denne bog er ikke registreret og kan derfor ikke markeres med status.")
 
