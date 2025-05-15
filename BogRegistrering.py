@@ -43,11 +43,12 @@ def bogBedømmelse(): #Funktion der gør det muligt at ædre bedømmelsen på b�
         fundet = False
         for bog in bib.bøger: #Hvis den intastet bog findes i biblioteket over bøger vil man kunne bedømme bogen.
             if bog.title.lower() == titel.lower():
-                bedømmelse = input("Hvordan vil du bedømme bogen fra 1-10?").upper()
-                    if bedømmelse ==
+                print("bogen er fundet")
+                bedømmelse = int(input("Hvordan vil du bedømme bogen fra 1-10?"))
                 bog.bedømmelse = bedømmelse #Bogens bedømmelse ændres.
                 print("Bogens bedømmelse er nu ændret")
                 fundet = True
+                break
 
         if not fundet: #Hvis bogen ikke findes i bibliotekket vil den printe teksten nedenfor.
             print("Denne bog er ikke registreret og derfor ikke bedømmes.")
