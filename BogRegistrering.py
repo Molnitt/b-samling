@@ -136,6 +136,7 @@ def bogSearch(): #Funktion der gør det muligt at søge efter en bog ud fra genr
         print("ugyldigt valg. Prøv igen.") #Hvis der ikke intastes en af valg mulighederne gives denne meddelse.
 
 
+
 registrereBog()
 bogBedømmelse()
 bogStatus()
