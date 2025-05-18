@@ -9,13 +9,18 @@ class Bog: #Klasse til bøgerne.
         self.bedømmelse = bedømmelse
         self.læststatus = læststatus
 
-    def __str__(self):
-        return "'{self.title}' af {self.forfatter} | Genre: {self.genre} | Bedømmelse: {self.bedømmelse} | Status: {self.læststatus}"
-
 
 class Bibliotek: #Klasse til biblioteket for bog samlingen.
     def __init__(self):
-        self.bøger = [] #liste til at gemme registreret bøger.
+        self.bøger = [
+            Bog("Vaskebjørns Teorien","Ukendt","Kunst litteratur","1717171717171",10,"læst"), #Dummy bøger der er registret på forhånd.
+            Bog("Guide til LUA", "Jacob Pedersen", "Guide", "1234567893923", 7, "ulæst"),
+            Bog("Jens fryser", "Jensen", "horror", "1284567897923", 1, "ulæst"),
+            Bog("Grundbog i retorik", "Systime", "horror", "1236567855923", 2, "læst"),
+            Bog("Jens går tur", "Jensen", "horror", "1234587886923", 4, "læst"),
+
+        ] #liste til at gemme registreret bøger.
+
 
     def tilføj(self, bog):
         #Tilføjer bøger til biblioteket.
@@ -74,7 +79,7 @@ def bogBedømmelse(): #Funktion der gør det muligt at ændre bedømmelsen på b
                         print("Skriv et valideret tal")
                     break #løkken afsluttes.
             if not fundet: #Hvis bogen ikke findes i bibliotekket vil den printe teksten nedenfor.
-                print("Denne bog er ikke registreret og derfor ikke bedømmes.")
+                print("Denne bog er ikke registreret og kan derfor ikke bedømmes.")
 
 
 
@@ -86,6 +91,9 @@ def bogStatus(): #Funktion til at ændre læse status på bogen.
 
         for bog in bib.bøger: #Hvis den intastet bog findes i biblioteket over bøger vil man kunne ændre statusen på bogen.
             if bog.title.lower() == titel.lower():
+                print("bogen er fundet")
+                fundet = True  # Marker at bogen er fundet i biblioteket.
+
                 while True: #En løkke til intastelse af bogens læse status som afbrydes når der regitreres gyldigt input.
                     status = input("Er bogen læst eller ulæst").upper() #Brugeren bliver spurgt om bogen er læst eller ulæst.
                     if status in ("LÆST", "ULÆST"): #Svaret skal være læst eller ulæst.
@@ -94,11 +102,44 @@ def bogStatus(): #Funktion til at ændre læse status på bogen.
                         break #Løkken afbrydes.
                     else:
                         print("Bogen skal markeres som læst eller ulæst") #Hvis bogen ikke markeres som læst eller ulæst vil brugeren blive spurgt om at vælge en af valg mulighederne.
-        print("Denne bog er ikke registreret og kan derfor ikke markeres med status.") #Hvis bogen ikke kan findes i biblioteket kan dens status ikke ændres.
+                if not fundet: #Hvis bogen ikke findes i biblioteket får brugeren denne meddelse.
+                    print("Denne bog er ikke registreret og kan derfor ikke markers som læst eller ulæst")
+
+
+
+
+def bogSearch(): #Funktion der gør det muligt at søge efter en bog ud fra genre, forfatter eller bedømmelse.
+    RegistrerSvarSearch = input("Hvad vil du søge efter (genre / forfatter / bedømmelse)?").upper() #Brugeren bliver spurgt om hvad de vil søge efter.
+
+    if RegistrerSvarSearch == "genre".upper(): #Hvis input er genre vil der blive spurgt om hvilken genre.
+        genre = input("Hvilken genre? ").upper()
+        for bog in bib.bøger: #Hvis den intastet genre findes i biblioteket over bøger, printes der en oversigt over bøger med samme genre.
+            if bog.genre.lower() == genre.lower():
+                print(f"Bogen {bog.title} af {bog.forfatter}, genre {bog.genre}")
+
+    elif RegistrerSvarSearch == "forfatter".upper(): #Hvis forfatter er genre vil der blive spurgt om hvilken forfatter.
+        forfatter = input("Hvilken forfatter? ").upper()
+
+        for bog in bib.bøger: #Hvis den intastet forfatter findes i biblioteket over bøger, printes der en oversigt over bøger med samme forfatter.
+            if bog.forfatter.lower() == forfatter.lower():
+                print(f"Bogen {bog.title} af {bog.forfatter}, genre {bog.genre}")
+
+    elif RegistrerSvarSearch == "bedømmelse".upper(): #Hvis input er bedømmelse vil der blive spurgt om hvilken bedømmelse.
+        try:
+            bedømmelse = int(input("Hvilken bedømmelse? ")) #Koden vil prøve at konvertere inputtet til et gyldigt tal.
+            for bog in bib.bøger: #Hvis den intastet bedømmelse findes i biblioteket over bøger, printes der en oversigt over bøger med samme bedømmelse.
+                if int(bog.bedømmelse) == bedømmelse:
+                    print(f"Bogen {bog.title} af {bog.forfatter}, genre {bog.genre}")
+        except ValueError: #Søger for at koden ikke crasher hvis inputet ikke kan konverteres til et heltal.
+            print("Bedømmelsen skal være et tal.") #Meddeler brugeren om at de skal skrive et gyldigt tal.
+    else:
+        print("ugyldigt valg. Prøv igen.") #Hvis der ikke intastes en af valg mulighederne gives denne meddelse.
+
 
 registrereBog()
 bogBedømmelse()
 bogStatus()
+bogSearch()
 
 
 
