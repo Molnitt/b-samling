@@ -9,6 +9,9 @@ class Bog: #Klasse til bøgerne.
         self.bedømmelse = bedømmelse
         self.læststatus = læststatus
 
+    def __str__(self):
+        return "'{self.title}' af {self.forfatter} | Genre: {self.genre} | Bedømmelse: {self.bedømmelse} | Status: {self.læststatus}"
+
 
 class Bibliotek:
     def __init__(self):
@@ -16,6 +19,7 @@ class Bibliotek:
 
     def tilføj(self, bog):
         self.bøger.append(bog)
+
 
 bib = Bibliotek()
 
@@ -26,10 +30,17 @@ def registrereBog(): #Funktion der gør at man kan ændre statusen på bøger.
         title = input("Hvilken bog vil du registrere? ")
         forfatter = input("Hvem er forfatteren af bogen? ")
         genre = input("Hvilken genre har bogen? ")
-        isbn = input("Hvad er bogens ISBN? ")
-        ny_bog = Bog(title, forfatter, genre, isbn)
-        bib.tilføj(ny_bog)
-        print("Denne bog er nu registreret")
+
+        while True:
+            isbn = input("Hvad er bogens ISBN? (13 cifre) ")
+            if isbn.isdigit() and len(isbn) == 13: #Tjekkes for om den intastet ISBN kode består af tal og er 13 cifre lang.
+                break
+            else:
+                print("Ugyldigt ISBN, prøv igen") #Hvis den intastet ISBN ikke er 13 cifre eller indholder bogstaver, vil der være fejl og man vil skulle intaste den igen.
+
+        ny_bog = Bog(title, forfatter, genre, isbn) #Opretter bogen med de angivet oplysninger.
+        bib.tilføj(ny_bog) #Bog tilføjet til bibliotek
+        print("Denne bog er nu registreret") #Meddelse til brugeren om at bogen er registreret.
 
 registrereBog()
 print(bib.bøger)
